@@ -1,16 +1,8 @@
 import mongoose from 'mongoose';
 
-const EnderecoSchema = new mongoose.Schema(
-  {
-    cep: String,
-    logradouro: String,
-    bairro: String,
-    cidade: String,
-    uf: String,
-    regiao: String,
-    pessoas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pessoa' }],
-  },
-  { timestamps: true }
-);
+const unidadeSchema = new mongoose.Schema({
+  nome: { type: String, required: true },
+  sigla: { type: String, required: true, uppercase: true }
+}, { timestamps: true });
 
-export default mongoose.model('Endereco', EnderecoSchema);
+export default mongoose.model('unidade', unidadeSchema);

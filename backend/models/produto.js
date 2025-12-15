@@ -1,12 +1,23 @@
 import mongoose from 'mongoose';
-import fornecedor from './fornecedor';
-import unidade from './unidade';
 
-const produtoSchema = new mongoose.Schema({
-  nome: String,
-  quantidade: Int32,
-  unidade: [{ type: mongoose.Schema.Types.ObjectId, ref: 'unidade' }],
-  fornecedor: [{ type: mongoose.Schema.Types.ObjectId, ref: 'fornecedor' }],
-});
+const produtoSchema = new mongoose.Schema(
+  {
+    nome: { type: String, required: true },
+    quantidade: { type: Number, default: 0 },
+
+    fornecedor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'fornecedor',
+      required: true,
+    },
+
+    unidade: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'unidade',
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model('produto', produtoSchema);
