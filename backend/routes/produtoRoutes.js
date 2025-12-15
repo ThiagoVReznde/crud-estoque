@@ -1,9 +1,7 @@
 import express from 'express';
 import produtoDAO from '../dao/produtoDAO.js';
 
-import { Router } from 'express';
-
-const router = Router();
+const router = express.Router();
 const dao = new produtoDAO();
 
 // URL base: /produto/
@@ -51,3 +49,5 @@ router.get("/filtrar", async (req, res) => {
     console.log("erro ao listar!!");
   }
 });
+
+export default router;
